@@ -58,7 +58,7 @@ angular.module('ui.calendar', [])
         }
         
         // This extracts all the information we need from the resource. http://jsperf.com/angular-calendar-events-fingerprint/3
-        return r.id
+        return r.id;
       };
 
       var sourceSerialId = 1, sourceEventsSerialId = 1;
