@@ -235,7 +235,7 @@ angular.module('ui.calendar', [])
             calendar,
             eventSourcesWatcher = controller.changeWatcher(sources, controller.sourceFingerprint),
             eventsWatcher = controller.changeWatcher(controller.allEvents, controller.eventFingerprint),
-            resourceWatcher = controller.changeWatcher(scope.resources, controller.resourceFingerprint),
+            resourceWatcher = controller.changeWatcher(scope.resources || [], controller.resourceFingerprint),
             options = null;
 
         function getOptions(){
