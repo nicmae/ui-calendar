@@ -254,7 +254,7 @@ angular.module('ui.calendar', [])
 
           var options2 = {};
           for(var o in options){
-            if(o !== 'eventSources'){
+            if(o !== 'eventSources' && o !== 'resources'){
               options2[o] = options[o];
             }
           }
@@ -327,12 +327,20 @@ angular.module('ui.calendar', [])
         resourceWatcher.onAdded = function(resource) {
           if (calendar && calendar.fullCalendar) {
             calendar.fullCalendar('addResource', resource);
+
+            calendar.fullCalendar('destroy');
+            calendar.fullCalendar('render');
+            scope.initCalendar();
           }
         };
 
         resourceWatcher.onRemoved = function(resource) {
           if (calendar && calendar.fullCalendar) {
             calendar.fullCalendar('removeResource', resource);
+
+            calendar.fullCalendar('destroy');
+            calendar.fullCalendar('render');
+            scope.initCalendar();
           }
         };
 
