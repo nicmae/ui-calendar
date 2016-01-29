@@ -261,6 +261,12 @@ angular.module('ui.calendar', [])
           return JSON.stringify(options2);
         }
 
+        function saveOptionState() {
+          options.defaultDate = calendar.fullCalendar('getDate');
+          options.defaultView  = calendar.fullCalendar('getView').name;
+          options.height = calendar.fullCalendar('option', 'height');
+        }
+
         scope.destroyCalendar = function(){
           if(calendar && calendar.fullCalendar){
             calendar.fullCalendar('destroy');
@@ -326,8 +332,8 @@ angular.module('ui.calendar', [])
 
         resourceWatcher.onAdded = function(resource) {
           if (calendar && calendar.fullCalendar) {
+            saveOptionState();
             calendar.fullCalendar('addResource', resource);
-
             calendar.fullCalendar('destroy');
             calendar.fullCalendar('render');
             scope.initCalendar();
@@ -336,8 +342,8 @@ angular.module('ui.calendar', [])
 
         resourceWatcher.onRemoved = function(resource) {
           if (calendar && calendar.fullCalendar) {
+            saveOptionState();
             calendar.fullCalendar('removeResource', resource);
-
             calendar.fullCalendar('destroy');
             calendar.fullCalendar('render');
             scope.initCalendar();
